@@ -1,0 +1,23 @@
+{
+  "name": "cleanworkbench-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "本地数据清洗台前端：拖入文件 → 体检 → 配方 → 人工确认 → 执行 → 报告 → 导出（数据不出本机）",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.14",
+    "@types/react-dom": "18.3.2",
+    "@vitejs/plugin-react": "4.3.4",
+    "typescript": "5.7.2",
+    "vite": "5.4.11"
+  }
+}

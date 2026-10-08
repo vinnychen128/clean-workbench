@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+venv-lock/
+.pytest_cache/
+.mypy_cache/
+dist/
+build/
+
+# Node
+node_modules/
+frontend/dist/
+
+# Local runtime artifacts (cleaned copies, reports, sqlite db)
+*.db
+*.sqlite3
+/backend/data/
+!/backend/app/operations/data/
+outputs/
+cleaned_*/
+*.csv.bak
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Local config (user-filled templates only)
+*.local.env
+.env
+
+# AI 辅助层运行时缓存与台账（本地生成，不入仓）
+.cache/

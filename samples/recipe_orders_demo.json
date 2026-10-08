@@ -1,0 +1,42 @@
+{
+  "schema_id": "clean-recipe/v1",
+  "name": "orders-demo",
+  "source": {
+    "thread_id": "demo",
+    "file_name": "dirty_orders.csv"
+  },
+  "operations": [
+    {
+      "op": "row_dedupe",
+      "params": {}
+    },
+    {
+      "op": "cell_trim",
+      "params": {
+        "columns": [
+          "备注"
+        ]
+      }
+    },
+    {
+      "op": "cell_amount_clean",
+      "params": {
+        "column": "金额"
+      }
+    },
+    {
+      "op": "cell_date_normalize",
+      "params": {
+        "column": "日期"
+      }
+    },
+    {
+      "op": "cell_fullwidth",
+      "params": {
+        "columns": [
+          "名称"
+        ]
+      }
+    }
+  ]
+}

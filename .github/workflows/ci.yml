@@ -1,0 +1,71 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  backend:
+    name: backend · py${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install backend dependencies
+        run: |
+          python -m venv backend/.venv
+          source backend/.venv/bin/activate
+          pip install -q -r backend/requirements.txt
+
+      - name: Run full pytest (L1~L5)
+        run: |
+          source backend/.venv/bin/activate
+          python -m pytest -q backend/tests/
+
+      - name: Smoke test (parse → export 全链路)
+        run: |
+          source backend/.venv/bin/activate
+          python scripts/smoke.py
+
+      - name: "Residual-dirt reconciliation (未清洗必红 / 正确清洗必绿 / 回退规则必红)"
+        run: |
+          source backend/.venv/bin/activate
+          python scripts/check_residual_dirt_selftest.py
+
+      - name: Lint (flake8 + pylint)
+        run: |
+          source backend/.venv/bin/activate
+          pip install -q flake8 pylint
+          flake8 backend/app/ backend/tests/ --max-line-length=120 --ignore=E501,W503 --count
+          pylint backend/app/ --disable=C0114,C0115,C0116,R0903 --fail-under=7.0
+
+  frontend:
+    name: frontend · node20
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install frontend dependencies
+        run: npm ci --prefix frontend
+
+      - name: Build frontend
+        run: npm run build --prefix frontend
