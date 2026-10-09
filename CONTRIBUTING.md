@@ -9,7 +9,7 @@
 
 ## 环境
 
-- Python 3.11+ / Node 18+
+- Python 3.11+ / Node 20+
 - 依赖版本以 `backend/requirements.txt` 与 `frontend/package.json` 锁定为准
 - 许可证白名单：Apache-2.0 / MIT / BSD / ISC；**GPL / AGPL / SSPL 不得引入**
 

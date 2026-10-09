@@ -2,7 +2,7 @@
 
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](backend/requirements.txt)
-[![Node](https://img.shields.io/badge/node-18%2B-brightgreen.svg)](frontend/package.json)
+[![Node](https://img.shields.io/badge/node-20%2B-brightgreen.svg)](frontend/package.json)
 
 > **本地运行，数据不出本机。** 零上传——全部清洗逻辑在浏览器与本地引擎间通过环回完成；AI 辅助（列语义建议 / 报告人话版）**默认关闭**，由你决定是否开启，开启后仅发送列的形态（列名 + 列级统计），**不发送任何数据值**。
 
@@ -131,7 +131,7 @@ pip install -r requirements.txt
 python -m app.server   # 启动本地服务，监听 127.0.0.1:8321
 ```
 
-### 前端（Node 18+）
+### 前端（Node 20+）
 
 ```bash
 cd frontend
@@ -186,7 +186,7 @@ docs/              用户说明、依赖许可清单、检测器—操作契约
 | 项 | 口径 |
 |---|---|
 | 许可证 | [Apache-2.0](LICENSE)（全文 201 行）；依赖白名单 Apache-2.0 / MIT / BSD / ISC，禁 GPL / AGPL / SSPL，详见 [docs/dependency-license.md](docs/dependency-license.md) |
-| 运行环境 | Python **≥ 3.10**（实测 CPython 3.11.9 / 3.12.14）；Node **18+**（实测 v24.18.0）；前端构建产物 css 27.19 kB / js 189.63 kB |
+| 运行环境 | Python **≥ 3.10**（实测 CPython 3.11.9 / 3.12.14）；Node **20+**（CI 在 node 20 上构建通过，本机实测 v24.18.0）；前端构建产物 css 27.19 kB / js 189.63 kB |
 | 支持范围 | **macOS 已实测**（macOS 26.6.2 + Chrome，全流程实跑通过）；**Windows 未验证（未做真机实测）**；Linux 未做本地实测（CI 在 `ubuntu-latest` 上执行后端测试与前端构建） |
 | CI | [`.github/workflows/ci.yml`](.github/workflows/ci.yml)：后端 `pytest`（Python 3.11 / 3.12 矩阵）+ `flake8` / `pylint` + 前端 `npm ci && npm run build`，**任一环节失败即红**（不用 `|| echo` 吞错） |
 | 贡献方式 | 见 [CONTRIBUTING.md](CONTRIBUTING.md)：issue 须用合成样例复现、**禁止粘贴真实客户数据**、提交前跑全量测试；issue 模板见 [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE/) |

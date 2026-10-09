@@ -48,8 +48,9 @@ jobs:
       - name: Lint (flake8 + pylint)
         run: |
           source backend/.venv/bin/activate
-          pip install -q flake8 pylint
-          flake8 backend/app/ backend/tests/ --max-line-length=120 --ignore=E501,W503 --count
+          # 钉住 lint 工具版本：不钉版时工具升级会让同一份代码由绿转红
+          pip install -q flake8==7.4.1 pycodestyle==2.15.0 pyflakes==4.0.3 mccabe==0.7.0 pylint==4.1.2 astroid==4.3.4
+          flake8 backend/app/ backend/tests/ --max-line-length=120 --extend-ignore=E501,W503 --count
           pylint backend/app/ --disable=C0114,C0115,C0116,R0903 --fail-under=7.0
 
   frontend:
