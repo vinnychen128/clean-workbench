@@ -207,7 +207,7 @@ def test_static_scan_no_outbound_http():
         text = _strip_comments(p.read_text(encoding="utf-8", errors="ignore"))
         for pat in outbound_patterns:
             for m in re.finditer(pat, text):
-                hits.append(f"{p.relative_to(REPO_ROOT)}:{pat}:{text[max(0, m.start()-40):m.end()+40]!r}")
+                hits.append(f"{p.relative_to(REPO_ROOT)}:{pat}:{text[max(0, m.start() - 40):m.end() + 40]!r}")
     assert not hits, f"检测到疑似外联调用 {len(hits)} 处:\n" + "\n".join(hits[:10])
 
 
